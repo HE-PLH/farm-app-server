@@ -9,7 +9,7 @@ const Model = db.mongoose.model;
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/images');
+        cb(null, './src/models/public/images');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
@@ -38,11 +38,7 @@ const AnimalImages = new Schema({
     name: {
         type: String,
     },
-/*
-    image: {
-        type: String,
-    },
-*/
+
     description: {
         type: String,
     },
