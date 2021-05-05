@@ -38,11 +38,11 @@ const AnimalImages = new Schema({
     name: {
         type: String,
     },
-
+/*
     image: {
         type: String,
     },
-
+*/
     description: {
         type: String,
     },
@@ -126,7 +126,7 @@ const addAnimalImage = (req, res) => {
     const inputData = [{
         id: req.body.id,
         name: req.body.name,
-        image: req.file.path,  //update this
+        //image: req.file.path,  //update this
         description: req.body.description,
         capture_time: req.body.capture_time,
     }];
