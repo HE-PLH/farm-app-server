@@ -104,7 +104,7 @@ const getAnimalImage = (req, res) => {
         }
         if(docs.length===1){
             let p = (path.join(__dirname, "../../"+docs[0].image));
-            res.sendFile(p.replace("\\", "/"))
+            res.sendFile(p.replace(/\\/g, "/"))
         }else{
             res.send(docs);
         }
