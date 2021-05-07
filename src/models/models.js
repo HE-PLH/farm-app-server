@@ -3,6 +3,7 @@ var request = require('request');
 var path = require('path');
 const multer = require('multer');
 const db = require("../database/database");
+var appDir = path.dirname(require.main.filename);
 // const { default: axios } = require("axios");
 const Schema = db.mongoose.Schema;
 const Model = db.mongoose.model;
@@ -36,6 +37,10 @@ const AnimalImages = new Schema({
     },
 
     name: {
+        type: String,
+    },
+
+    image: {
         type: String,
     },
 
@@ -97,10 +102,9 @@ const getAnimalImage = (req, res) => {
             });
             return 0;
         }
-        // let p = (docs.image.replace("\\\\", "//"))+"jpg";
         if(docs.length===1){
-            let p = (path.join(__dirname, docs[0].image));
-            res.sendfile(p)
+            let p = (path.join(__dirname, "../../"+docs[0].image));
+            res.sendFile(p)
         }else{
             res.send(docs);
         }
@@ -122,7 +126,7 @@ const addAnimalImage = (req, res) => {
     const inputData = [{
         id: req.body.id,
         name: req.body.name,
-        //image: req.file.path,  //update this
+        image: req.file.path,  //update this
         description: req.body.description,
         capture_time: req.body.capture_time,
     }];
